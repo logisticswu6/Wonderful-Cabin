@@ -4,19 +4,35 @@
   src: url("PopGothicCjkTc-Bold.ttf") format("truetype");
 }
 
+/* style.css */
+
 body {
-  font-family:
-    "Microsoft JhengHei", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Microsoft JhengHei", sans-serif;
+  /* 將 height 改為 min-height，讓頁面可以隨內容長度延伸 */
+  min-height: 100vh;
   display: flex;
+  flex-direction: column; /* 改為直向排列 */
   justify-content: center;
   align-items: center;
-  height: 100vh;
   margin: 0;
+  padding: 20px; /* 手機版加上內邊距防止文字貼邊 */
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
   color: #e0e0e0;
-  -webkit-user-select: none;
-  user-select: none;
-  transition: filter 0.3s ease;
+}
+
+/* 強制文字換行，防止長句超出螢幕 */
+p {
+  word-wrap: break-word;
+  word-break: break-all;
+  line-height: 1.6;
+}
+
+/* 針對手機的小螢幕微調 */
+@media screen and (max-width: 600px) {
+  body {
+    height: auto; /* 手機版高度自適應 */
+    padding: 10px;
+  }
 }
 
 /* 容器設定 - 半透明玻璃效果 */
@@ -30,6 +46,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.18);
   max-width: 400px;
   width: 90%;
+  box-sizing: border-box;
 }
 
 .container-home {
@@ -173,34 +190,4 @@ ul {
 
 .hidden {
   display: none;
-}
-
-/* 基礎設定 */
-.container,
-.container-home,
-.container-mystery {
-  width: 90%; /* 在手機上留出邊距 */
-  max-width: 600px; /* 大螢幕限制最大寬度 */
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* 針對小螢幕進行調整 */
-@media screen and (max-width: 600px) {
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  .btn {
-    display: block; /* 按鈕變為垂直排列 */
-    width: 100%;
-    margin: 10px 0;
-    padding: 15px;
-    text-align: center;
-  }
-
-  .button-group {
-    display: flex;
-    flex-direction: column;
-  }
 }
