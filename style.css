@@ -15,7 +15,7 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
-  padding: 10px; /* 手機版加上內邊距防止文字貼邊 */
+  padding: 5ch; /* 手機版加上內邊距防止文字貼邊 */
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
   color: #e0e0e0;
 }
@@ -28,10 +28,10 @@ p {
 }
 
 /* 針對手機的小螢幕微調 */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   body {
     height: auto; /* 手機版高度自適應 */
-    padding: 10px;
+    padding: 5ch;
   }
 }
 
