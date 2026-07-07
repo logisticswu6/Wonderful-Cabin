@@ -15,7 +15,7 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
-  padding: 20px; /* 手機版加上內邊距防止文字貼邊 */
+  padding: 10px; /* 手機版加上內邊距防止文字貼邊 */
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
   color: #e0e0e0;
 }
