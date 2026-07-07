@@ -174,3 +174,33 @@ ul {
 .hidden {
   display: none;
 }
+
+/* 基礎設定 */
+.container,
+.container-home,
+.container-mystery {
+  width: 90%; /* 在手機上留出邊距 */
+  max-width: 600px; /* 大螢幕限制最大寬度 */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* 針對小螢幕進行調整 */
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    display: block; /* 按鈕變為垂直排列 */
+    width: 100%;
+    margin: 10px 0;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .button-group {
+    display: flex;
+    flex-direction: column;
+  }
+}
