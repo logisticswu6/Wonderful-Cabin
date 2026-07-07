@@ -1,4 +1,9 @@
 /* 全域設定 - 讓背景有深色層次感 */
+@font-face {
+  font-family: "大波浪圓體";
+  src: url("PopGothicCjkTc-Bold.ttf") format("truetype");
+}
+
 body {
   font-family:
     "Microsoft JhengHei", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -12,7 +17,6 @@ body {
   -webkit-user-select: none;
   user-select: none;
   transition: filter 0.3s ease;
-
 }
 
 /* 容器設定 - 半透明玻璃效果 */
@@ -28,10 +32,53 @@ body {
   width: 90%;
 }
 
+.container-home {
+  text-align: center;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  max-width: 500px;
+  width: 90%;
+}
+
+.container-mystery {
+  text-align: center;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  max-width: 350px;
+  width: 50%;
+}
+
 h1 {
   color: #00d2ff; /* 標題使用亮藍色 */
   margin-bottom: 30px;
   text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+  font-family: "大波浪圓體";
+}
+
+h2 {
+  color: #ffffff; /* 標題使用亮紅色 */
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+}
+
+.hp {
+  color: #ffffff; /* 標題使用亮紅色 */
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.hpr {
+  color: #ff0000; /* 標題使用亮紅色 */
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(252, 88, 88, 0.5);
 }
 
 /* 按鈕基礎設定 */
@@ -49,6 +96,7 @@ h1 {
   transition: all 0.3s ease; /* 平滑過渡效果 */
   text-transform: uppercase;
   letter-spacing: 1px;
+  font-family: "大波浪圓體";
 }
 
 /* 按鈕 1: 使用說明書 (藍色系) */
@@ -74,6 +122,15 @@ h1 {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(220, 53, 69, 0.6);
 }
+.btn.y {
+  background: linear-gradient(45deg, #007bff, #00d2ff);
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+}
+
+.btn.n {
+  background: linear-gradient(45deg, #dc3545, #ff6b6b);
+  box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+}
 
 /* 狀態文字 */
 #status {
@@ -88,4 +145,32 @@ ul {
   text-align: left;
   display: inline-block;
   color: #b0bec5;
+}
+
+.justify-align {
+  text-align: justify;
+  font-family: "Times New Roman", "標楷體";
+}
+
+.left-align {
+  text-align: left;
+  font-family: "Arial", "標楷體";
+}
+
+.left-to-right-align {
+  text-align: left;
+  direction: ltr;
+  font-family: "Times New Roman", "標楷體";
+  overflow: auto;
+}
+
+.center2-align {
+  text-align: center;
+  direction: ltr;
+  font-family: "Times New Roman", "標楷體";
+  overflow: auto;
+}
+
+.hidden {
+  display: none;
 }

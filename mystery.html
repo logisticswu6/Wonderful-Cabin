@@ -3,24 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>神祕頁面 - 風格版</title>
+    <title>神秘地方</title>
     <link rel="stylesheet" href="style.css" />
     <meta name="robots" content="noindex, nofollow, noarchive" />
     <meta http-equiv="X-Frame-Options" content="DENY" />
   </head>
   <body>
-    <div class="container">
+    <div class="container-mystery">
+      <div class="center-align">
       <h1>神秘地方</h1>
-      <p>To 晴文：<br />請選擇您的決策：</p>
-      <button onclick="saveData('願意')" class="btn manual">願意</button>
-      <button onclick="saveData('不願意')" class="btn mystery">不願意</button>
-
+      <div class="left-to-right-align">
+      <p>To 晴文：<br />不知道你看到這篇文章的時候，已經不知道甚麼時候了，但我其實要告訴你，在國三的時候，就喜歡妳很久了，但國中畢業，我們都沒有對方的聯繫方式，到了高中下學期我才知道，你跟我同一間高中，成功加上你的IG，我第一件事情就是想彌補國中的遺憾。
+      <br />自從加上你IG以後，我就不停地找你聊天，可能你都很困惑了，我們也認識好幾個月多了，你找我看電影的時候，我就很認真地在想，我要步要把這件事實個訴你，在看電影的時候，我也想偷偷牽起你的手，但卻遲遲不敢開口和動作... 那我現在要告訴你的是...</p>
+      </div>
+    <div class="center2-align" id="delay-text" style="opacity: 0; transition: opacity 5s;">
+      <h2 onclick="hideAll()" class="h2">你願意做我女朋友嗎?</h2>
+      <p onclick="hideAll()" class="hp">選擇後，就不能反悔了<br><span class="hpr">選擇好以後聯繫我:@logisticswu6</span></p>
+      <button class="btn y" onclick="saveData('願意'); hideAll();">願意</button>
+      <button class="btn n" onclick="saveData('不願意'); hideAll();">不願意</button>
+    </div>
       <p id="status"></p>
       <a href="index.html" class="btn manual">返回首頁</a>
       <div id="noise-layer"></div>
     </div>
-
     <script>
+    function showText() {
+        var text = document.getElementById("delay-text");
+        text.style.opacity = 1;
+    }
+
+    setTimeout(showText, 20000); // 20秒後顯示文字
+
+    // 隱藏兩個按鈕的邏輯
+    function hideAll() {
+        const buttons = document.querySelectorAll('.btn.y, .btn.n ,.h2,.hp');
+        buttons.forEach(btn => btn.style.display = 'none');
+    }
+
+    
       // 儲存設定的變數
       let config = {};
 
@@ -45,7 +65,7 @@
         }
 
         const status = document.getElementById("status");
-        status.innerText = "正在儲存...";
+        status.innerText = "...";
 
         const dataToSend = {
           lastChoice: choice,
@@ -66,7 +86,7 @@
           );
 
           if (response.ok) {
-            status.innerText = "儲存成功！選擇：" + choice;
+            status.innerText = "選擇：" + choice;
           } else {
             status.innerText = "儲存失敗，請檢查 API Key。";
           }
