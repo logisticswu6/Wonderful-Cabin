@@ -1,0 +1,108 @@
+    function showText() {
+        var text = document.getElementById("button-group");
+        text.style.opacity = 1;
+    }
+
+    setTimeout(showText, 2000); // 20秒後顯示文字
+
+    // 隱藏兩個按鈕的邏輯
+    function hideAll() {
+        const buttons = document.querySelectorAll('.btn.y, .btn.n ,.h2,.hp');
+        buttons.forEach(btn => btn.style.display = 'none');
+    }
+
+    
+      // 儲存設定的變數
+      let config = {};
+
+      // 頁面載入時先讀取設定
+      async function loadConfig() {
+        try {
+          const response = await fetch("config.json");
+          config = await response.json();
+          console.log("設定檔載入成功");
+        } catch (error) {
+          console.error("無法載入 config.json，請檢查檔案路徑與格式", error);
+        }
+      }
+
+      // 初始化
+      loadConfig();
+      // 頁面載入時：檢查 localStorage
+  window.onload = function() {
+    loadConfig(); // 確保先載入設定
+    if (localStorage.getItem("hasClicked") === "true") {
+        const btnGroup = document.getElementById("button-group");
+        if (btnGroup) btnGroup.style.display = "none";
+        document.getElementById("status").innerText = "你按過了按鈕，不給你修改:)";
+
+        // 如果已經按過，直接讓文字顯示出來，不要等待 20 秒
+        document.getElementById("button-group").style.opacity = 1;
+    }
+  };
+  async function saveData(choice) {
+    if (!config.MASTER_KEY || !config.BIN_ID) {
+        alert("設定檔錯誤！");
+        return;
+    }
+
+    const status = document.getElementById("status");
+    status.innerText = "處理中...";
+
+    try {
+        // 1. 先取得當前的記錄
+        const getResponse = await fetch(`https://api.jsonbin.io/v3/b/${config.BIN_ID.trim()}`, {
+            headers: { "X-Master-Key": config.MASTER_KEY }
+        });
+        const data = await getResponse.json();
+        
+        // 取得目前次數 (如果沒有則設為 0)
+        let currentCount = data.record.count || 0;
+
+        // 2. 判斷是否已達 1 次
+        if (currentCount >= 1) {
+            status.innerText = "你按過了按鈕，不給你修改:)";
+            localStorage.setItem("hasClicked", "true");
+            return;
+        }
+
+        // 3. 寫入更新後的資料
+        const putResponse = await fetch(`https://api.jsonbin.io/v3/b/${config.BIN_ID.trim()}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Master-Key": config.MASTER_KEY
+            },
+            body: JSON.stringify({
+                lastChoice: choice,
+                count: currentCount + 1, // 次數加 1
+                timestamp: new Date().toLocaleString()
+            })
+        });
+
+        if (putResponse.ok) {
+            localStorage.setItem("hasClicked", "true");
+            status.innerText = "選擇：" + choice;
+        } else {
+            status.innerText = "儲存失敗";
+        }
+    } catch (error) {
+        status.innerText = "連線錯誤，請檢查網路。";
+    }
+}
+
+      // 1. 阻擋滑鼠右鍵
+      document.addEventListener("contextmenu", (event) =>
+        event.preventDefault(),
+      );
+
+      // 2. 阻擋常見快捷鍵 (截圖/複製)
+      document.addEventListener("keydown", (e) => {
+        if (
+          e.keyCode === 44 ||
+          (e.ctrlKey && (e.key === "c" || e.key === "u" || e.key === "s"))
+        ) {
+          e.preventDefault();
+          alert("此頁面禁止執行此操作！");
+        }
+      });
