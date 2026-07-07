@@ -1,0 +1,91 @@
+/* 全域設定 - 讓背景有深色層次感 */
+body {
+  font-family:
+    "Microsoft JhengHei", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #e0e0e0;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: filter 0.3s ease;
+
+}
+
+/* 容器設定 - 半透明玻璃效果 */
+.container {
+  text-align: center;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  max-width: 400px;
+  width: 90%;
+}
+
+h1 {
+  color: #00d2ff; /* 標題使用亮藍色 */
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+}
+
+/* 按鈕基礎設定 */
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  margin: 15px;
+  text-decoration: none;
+  color: #ffffff;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease; /* 平滑過渡效果 */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* 按鈕 1: 使用說明書 (藍色系) */
+.btn.manual {
+  background: linear-gradient(45deg, #007bff, #00d2ff);
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+}
+
+.btn.manual:hover {
+  background: linear-gradient(45deg, #0056b3, #00a0cc);
+  transform: translateY(-2px); /* 稍微浮起 */
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.6);
+}
+
+/* 按鈕 2: 神祕按鈕 (紅色系) */
+.btn.mystery {
+  background: linear-gradient(45deg, #dc3545, #ff6b6b);
+  box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+}
+
+.btn.mystery:hover {
+  background: linear-gradient(45deg, #a71d2a, #e05555);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220, 53, 69, 0.6);
+}
+
+/* 狀態文字 */
+#status {
+  margin-top: 20px;
+  min-height: 1.2em;
+  font-weight: bold;
+  color: #28a745; /* 成功時顯示綠色 */
+}
+
+/* 列表樣式 (在 manual.html 中使用) */
+ul {
+  text-align: left;
+  display: inline-block;
+  color: #b0bec5;
+}
